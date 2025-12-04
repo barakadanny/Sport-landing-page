@@ -20,9 +20,9 @@ export default function Gallery() {
     const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-black">
+        <section ref={targetRef} className="relative h-[400vh] bg-black">
             <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-                <motion.div style={{ x }} className="flex gap-0">
+                <motion.div style={{ x }} className="flex gap-0 w-[400vw]">
                     {classes.map((cls) => (
                         <div key={cls.id} className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center overflow-hidden group">
                             <motion.div

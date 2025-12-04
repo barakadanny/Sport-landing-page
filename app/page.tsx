@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden selection:bg-vivid-red selection:text-white">
+    <main className="min-h-screen flex flex-col bg-background text-foreground selection:bg-vivid-red selection:text-white">
       <div className="noise-bg"></div>
 
       <Navbar />

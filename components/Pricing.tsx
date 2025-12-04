@@ -35,7 +35,7 @@ export default function Pricing() {
                                         layoutId="water-bg"
                                         className="absolute inset-0 bg-black"
                                         initial={false}
-                                        transition={{ type: "spring", stiffness: 500, damping: 30, mass: 1 }}
+                                        transition={{ type: "spring", stiffness: 250, damping: 25, mass: 1 }}
                                     >
                                         {/* Optional: Add a subtle texture or gradient to make it look more like 'liquid' material */}
                                         <div className="absolute inset-0 bg-gradient-to-tr from-black via-gray-900 to-black opacity-80"></div>
