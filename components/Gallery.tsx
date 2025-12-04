@@ -14,6 +14,7 @@ export default function Gallery() {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
+        offset: ["start start", "end end"]
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
@@ -24,20 +25,28 @@ export default function Gallery() {
                 <motion.div style={{ x }} className="flex gap-0">
                     {classes.map((cls) => (
                         <div key={cls.id} className="relative h-screen w-screen flex-shrink-0 flex items-center justify-center overflow-hidden group">
-                            <Image
-                                src={cls.image}
-                                alt={cls.name}
-                                fill
-                                className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500 grayscale"
-                            />
+                            <motion.div
+                                className="absolute inset-0"
+                                style={{ scale: 1.1 }}
+                            >
+                                <Image
+                                    src={cls.image}
+                                    alt={cls.name}
+                                    fill
+                                    className="object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500 grayscale"
+                                />
+                            </motion.div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
 
                             <div className="relative z-10 text-center">
                                 <span className="block text-vivid-red text-xl font-bold tracking-widest mb-4">{cls.id}</span>
                                 <h3 className="text-[10vw] font-black text-white uppercase leading-none mix-blend-difference">{cls.name}</h3>
-                                <button className="mt-8 px-8 py-3 border border-white/30 text-white uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
+                                <motion.button
+                                    whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
+                                    className="mt-8 px-8 py-3 border border-white/30 text-white uppercase tracking-widest transition-colors"
+                                >
                                     View Class
-                                </button>
+                                </motion.button>
                             </div>
                         </div>
                     ))}

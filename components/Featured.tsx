@@ -44,12 +44,14 @@ export default function Featured() {
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                             className="absolute inset-0"
                         >
-                            <Image
-                                src="/images/featured_athlete_portrait_1764807085451.png"
-                                alt="Featured"
-                                fill
-                                className="object-cover grayscale contrast-125"
-                            />
+                            <motion.div className="relative w-full h-full" whileHover={{ scale: 1.05 }} transition={{ duration: 0.8 }}>
+                                <Image
+                                    src="/images/featured_athlete_portrait_1764807085451.png"
+                                    alt="Featured"
+                                    fill
+                                    className="object-cover grayscale contrast-125"
+                                />
+                            </motion.div>
                             {/* Text Mask Effect Overlay */}
                             <div className="absolute inset-0 bg-vivid-red mix-blend-multiply opacity-20"></div>
                         </motion.div>

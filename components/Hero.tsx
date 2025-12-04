@@ -11,14 +11,27 @@ export default function Hero() {
     });
 
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+    const textVariants = {
+        hidden: { y: 100, opacity: 0 },
+        visible: (i: number) => ({
+            y: 0,
+            opacity: 1,
+            transition: {
+                delay: i * 0.1,
+                duration: 1,
+                ease: [0.22, 1, 0.36, 1] as any
+            }
+        })
+    };
 
     return (
         <section ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden flex items-center justify-center">
 
             {/* Parallax Background Image */}
-            <motion.div style={{ y }} className="absolute inset-0 z-0">
+            <motion.div style={{ y, scale }} className="absolute inset-0 z-0">
                 <Image
                     src="/images/hero_combat_athletes_1764807034186.png"
                     alt="Hero"
@@ -31,23 +44,35 @@ export default function Hero() {
 
             {/* Kinetic Typography */}
             <div className="relative z-10 w-full px-6 md:px-12 flex flex-col items-center justify-center text-center">
-                <motion.h1
-                    style={{ y: textY, opacity }}
-                    className="text-[15vw] leading-[0.8] font-black text-white uppercase tracking-tighter mix-blend-overlay select-none"
-                >
-                    Fight
-                </motion.h1>
-                <motion.h1
-                    style={{ y: textY, opacity }}
-                    className="text-[15vw] leading-[0.8] font-black text-transparent text-outline uppercase tracking-tighter select-none"
-                >
-                    Club
-                </motion.h1>
+                <div className="overflow-hidden">
+                    <motion.h1
+                        custom={0}
+                        variants={textVariants}
+                        initial="hidden"
+                        animate="visible"
+                        style={{ opacity }}
+                        className="text-[15vw] leading-[0.8] font-black text-white uppercase tracking-tighter mix-blend-overlay select-none"
+                    >
+                        Fight
+                    </motion.h1>
+                </div>
+                <div className="overflow-hidden">
+                    <motion.h1
+                        custom={1}
+                        variants={textVariants}
+                        initial="hidden"
+                        animate="visible"
+                        style={{ opacity }}
+                        className="text-[15vw] leading-[0.8] font-black text-transparent text-outline uppercase tracking-tighter select-none"
+                    >
+                        Club
+                    </motion.h1>
+                </div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
+                    transition={{ delay: 0.8, duration: 0.8 }}
                     className="mt-12 flex flex-col items-center"
                 >
                     <p className="text-white/80 text-lg md:text-xl uppercase tracking-[0.5em] mb-8">Redefine Your Limits</p>

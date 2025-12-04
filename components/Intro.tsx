@@ -37,10 +37,14 @@ export default function Intro() {
                             <p className="text-xl text-gray-600 leading-relaxed mb-12 max-w-md">
                                 Forget everything you know about fitness. We don't just train bodies; we forge spirits. Enter a realm where your only competition is the person you were yesterday.
                             </p>
-                            <button className="group relative px-8 py-4 bg-black text-white font-bold uppercase tracking-wider overflow-hidden">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group relative px-8 py-4 bg-black text-white font-bold uppercase tracking-wider overflow-hidden"
+                            >
                                 <span className="relative z-10 group-hover:text-black transition-colors duration-300">Our Philosophy</span>
                                 <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                            </button>
+                            </motion.button>
                         </motion.div>
                     </div>
 
