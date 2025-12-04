@@ -19,47 +19,59 @@ export default function Pricing() {
                         </p>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 relative">
                         {[
                             { name: 'Drop In', price: '$25', period: '/class' },
                             { name: 'Monthly', price: '$149', period: '/month' },
                             { name: 'Yearly', price: '$1200', period: '/year' },
                         ].map((plan, idx) => (
-                            <motion.div
+                            <div
                                 key={idx}
-                                layout
                                 onClick={() => setSelected(idx)}
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{
-                                    layout: { duration: 0.3, type: "spring", stiffness: 200, damping: 25 },
-                                    opacity: { delay: idx * 0.1 }
-                                }}
-                                animate={{
-                                    backgroundColor: selected === idx ? '#000000' : '#ffffff',
-                                    borderColor: selected === idx ? '#000000' : '#e5e7eb',
-                                    color: selected === idx ? '#ffffff' : '#000000',
-                                    scale: selected === idx ? 1.05 : 1,
-                                }}
-                                className={`p-8 border flex items-center justify-between cursor-pointer group relative overflow-hidden rounded-lg`}
+                                className={`relative p-8 border border-gray-200 flex items-center justify-between cursor-pointer group overflow-hidden rounded-xl transition-colors duration-300 ${selected === idx ? 'border-transparent' : 'hover:border-gray-300'}`}
                             >
-                                <div>
-                                    <h3 className="text-2xl font-black uppercase mb-1">{plan.name}</h3>
-                                    <div className="flex items-center gap-2 text-sm opacity-60">
+                                {selected === idx && (
+                                    <motion.div
+                                        layoutId="water-bg"
+                                        className="absolute inset-0 bg-black"
+                                        initial={false}
+                                        transition={{ type: "spring", stiffness: 500, damping: 30, mass: 1 }}
+                                    >
+                                        {/* Optional: Add a subtle texture or gradient to make it look more like 'liquid' material */}
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-black via-gray-900 to-black opacity-80"></div>
+                                    </motion.div>
+                                )}
+
+                                <div className="relative z-10">
+                                    <motion.h3
+                                        animate={{ color: selected === idx ? '#ffffff' : '#000000' }}
+                                        className="text-2xl font-black uppercase mb-1"
+                                    >
+                                        {plan.name}
+                                    </motion.h3>
+                                    <motion.div
+                                        animate={{ color: selected === idx ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)' }}
+                                        className="flex items-center gap-2 text-sm"
+                                    >
                                         <Check size={16} />
                                         <span>Full Access</span>
-                                    </div>
+                                    </motion.div>
                                 </div>
-                                <div className="text-right">
+                                <div className="text-right relative z-10">
                                     <motion.span
                                         animate={{ color: selected === idx ? '#FF1E1E' : '#000000' }}
                                         className="text-4xl font-black block"
                                     >
                                         {plan.price}
                                     </motion.span>
-                                    <span className="text-xs font-bold uppercase tracking-widest block opacity-50">{plan.period}</span>
+                                    <motion.span
+                                        animate={{ color: selected === idx ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)' }}
+                                        className="text-xs font-bold uppercase tracking-widest block"
+                                    >
+                                        {plan.period}
+                                    </motion.span>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
