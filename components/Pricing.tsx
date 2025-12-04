@@ -1,7 +1,25 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useState } from 'react';
+
+const planDetails = [
+    {
+        title: "Just Passing Through?",
+        description: "Perfect for travelers or those wanting to test the waters before diving in.",
+        features: ["Access to any single class", "Equipment rental included", "No commitment required"]
+    },
+    {
+        title: "Commit to Greatness",
+        description: "The most popular choice for consistent training. Build your skills day by day.",
+        features: ["Unlimited classes", "Open gym access", "10% off merchandise", "2 Guest passes / month"]
+    },
+    {
+        title: "All In. No Excuses.",
+        description: "For the dedicated athlete ready to transform. Maximum value for maximum effort.",
+        features: ["Everything in Monthly", "2 Free PT sessions", "Exclusive gear pack", "Priority workshop booking"]
+    }
+];
 
 export default function Pricing() {
     const [selected, setSelected] = useState(1); // Default to Monthly (index 1)
@@ -9,14 +27,50 @@ export default function Pricing() {
     return (
         <section className="w-full bg-white py-32">
             <div className="container mx-auto px-6 md:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h2 className="text-6xl md:text-8xl font-black text-black uppercase tracking-tighter leading-[0.8] mb-12">
-                            Start <br /> Your <br /> Journey
-                        </h2>
-                        <p className="text-xl text-gray-500 max-w-md mb-12">
-                            Choose the plan that fits your goals. No hidden fees, no contracts, just results.
-                        </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="h-[400px] flex flex-col justify-center">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={selected}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <motion.h2
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 }}
+                                    className="text-6xl md:text-7xl font-black text-black uppercase tracking-tighter leading-[0.9] mb-8"
+                                >
+                                    {planDetails[selected].title}
+                                </motion.h2>
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="text-xl text-gray-500 max-w-md mb-8"
+                                >
+                                    {planDetails[selected].description}
+                                </motion.p>
+                                <div className="space-y-4">
+                                    {planDetails[selected].features.map((feature, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.3 + (i * 0.1) }}
+                                            className="flex items-center gap-3 text-black font-bold"
+                                        >
+                                            <div className="w-6 h-6 rounded-full bg-vivid-red flex items-center justify-center text-white">
+                                                <Check size={14} strokeWidth={3} />
+                                            </div>
+                                            {feature}
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
 
                     <div className="space-y-4 relative">
