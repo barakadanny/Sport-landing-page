@@ -10,12 +10,12 @@ const coaches = [
 
 export default function Team() {
     return (
-        <section className="w-full bg-[#111] py-32">
+        <section className="w-full bg-[#111] py-20">
             <div className="container mx-auto px-6 md:px-12">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    className="flex items-end justify-between mb-24 border-b border-white/10 pb-8"
+                    className="flex items-end justify-between mb-18 border-b border-white/10 pb-8"
                 >
                     <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter">Elite <br /> Squad</h2>
                     <div className="text-right hidden md:block">
@@ -33,7 +33,7 @@ export default function Team() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.2 }}
                             whileHover={{ y: -20 }}
-                            className="group relative h-[600px] bg-black border border-white/5 overflow-hidden"
+                            className="group relative h-[450px] bg-black border border-white/5 overflow-hidden"
                         >
                             <Image
                                 src={coach.image}

@@ -43,7 +43,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Kinetic Typography */}
-            <div className="relative z-10 w-full px-6 md:px-12 flex flex-col items-center justify-center text-center">
+            <div className="relative z-10 w-full px-6 md:px-12 flex flex-col items-center justify-center text-center pt-24">
                 <div className="overflow-hidden">
                     <motion.h1
                         custom={0}
